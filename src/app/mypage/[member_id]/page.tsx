@@ -1,9 +1,15 @@
+"use client";
 import style from "./Mypage.module.scss";
 import Person from "@public/Person.svg";
 import Setting from "@public/Setting.svg";
 import Logout from "@public/Logout.svg";
 
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 export default function mypage() {
+  const router = useRouter();
+
   return (
     <div className={`${style.container}`}>
       <div>
@@ -17,7 +23,13 @@ export default function mypage() {
           <Setting className={`${style.svgIcon}`} />
           <h4> 프로필 수정 </h4>
         </button>
-        <button className={`${style.button}`}>
+        <button
+          className={`${style.button}`}
+          onClick={() => {
+            signOut({ callbackUrl: "/" });
+            router.replace("/");
+          }}
+        >
           <Logout className={`${style.svgIcon}`} />
           <h4> 로그아웃 </h4>
         </button>

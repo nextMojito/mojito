@@ -1,10 +1,18 @@
 import mongoose from "mongoose";
-const memberListSchema = new mongoose.Schema({
+const memberSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
   },
   name: {
+    type: String,
+    required: true,
+  },
+  nickname: {
+    type: String,
+    required: true,
+  },
+  provider: {
     type: String,
     required: true,
   },
@@ -25,9 +33,8 @@ const memberStoreSchema = new mongoose.Schema({
   ],
 });
 
-export const MemberList =
-  mongoose.models?.Member_list ||
-  mongoose.model("Member_list", memberListSchema);
+export const Member =
+  mongoose.models?.Member_list || mongoose.model("Member_list", memberSchema);
 
 export const MemberStore =
   mongoose.models?.Member_store ||
